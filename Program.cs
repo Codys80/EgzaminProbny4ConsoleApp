@@ -3,6 +3,15 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EgzaminProbny4ConsoleApp
 {
+    /* Klasa: Uczen
+     * Opis: Klasa reprezentująca ucznia z imieniem, listą ocen oraz sumą ocen.
+     * Pola: instancja - licznik instancji klasy Uczen (statyczne),
+     *       id - unikalny identyfikator ucznia,
+     *       suma - suma ocen ucznia,
+     *       imie - imię ucznia,
+     *       oceny - lista ocen ucznia.
+     * Autor: Bartosz Semczuk
+     */
     class Uczen
     {
         static int instancja = 0;
@@ -10,6 +19,11 @@ namespace EgzaminProbny4ConsoleApp
         internal int suma { get; set; }
         internal string imie { get; set; }
         internal List<int> oceny { get; set; }
+        /* Nazwa funkcji: sortujOceny
+         * Parametry wejściowe: brak
+         * Informacje: Sortuje listę ocen ucznia w porządku rosnącym.
+         * Autor: Bartosz Semczuk
+         */
         public void sortujOceny()
         {
             int j = oceny.Count - 1;
@@ -27,7 +41,11 @@ namespace EgzaminProbny4ConsoleApp
                 j--;
             }
         }
-
+        /* Nazwa funkcji: przypiszSume
+         * Parametry wejściowe: brak
+         * Informacje: Oblicza i przypisuje sumę ocen ucznia do pola suma.
+         * Autor: Bartosz Semczuk
+         */
         public void przypiszSume()
         {
             for (int i = 0; i < oceny.Count; i++)
@@ -35,6 +53,11 @@ namespace EgzaminProbny4ConsoleApp
                 this.suma += this.oceny[i];
             }
         }
+        /* Nazwa konstruktora: Uczen
+         * Parametry wejściowe: brak
+         * Informacje: Inicjalizuje nową instancję klasy Uczen, przypisując unikalny identyfikator i inicjalizując listę ocen.
+         * Autor: Bartosz Semczuk
+         */
         public Uczen()
         {
             instancja++;
@@ -44,8 +67,17 @@ namespace EgzaminProbny4ConsoleApp
             przypiszSume();
         }
     }
+    /* Klasa: AplikacjaKonsolowa
+     * Opis: Klasa zawierająca metody do obsługi aplikacji konsolowej rywalizacji uczniów.
+     * Autor: Bartosz Semczuk
+     */
     class AplikacjaKonsolowa
     {
+        /* Nazwa funkcji: nwd
+         * Parametry wejściowe: u1 - pierwszy uczeń, u2 - drugi uczeń
+         * Informacje: Oblicza największy wspólny dzielnik (NWD) sum ocen dwóch uczniów.
+         * Autor: Bartosz Semczuk
+         */
         public int nwd(Uczen u1, Uczen u2)
         {
             while (u2.suma != 0)
@@ -56,6 +88,11 @@ namespace EgzaminProbny4ConsoleApp
             }
             return u1.suma;
         }
+        /* Nazwa funkcji: ktoZwycieza
+         * Parametry wejściowe: uczen1 - pierwszy uczeń, uczen2 - drugi uczeń
+         * Informacje: Porównuje sumy ocen dwóch uczniów i wypisuje, który uczeń wygrał lub czy jest remis, wraz z NWD ich sum ocen.
+         * Autor: Bartosz Semczuk
+         */
         public void ktoZwycieza(Uczen uczen1, Uczen uczen2)
         {
             if (uczen1.suma > uczen2.suma)
@@ -71,6 +108,11 @@ namespace EgzaminProbny4ConsoleApp
                 Console.WriteLine("Remis!");
             }
         }
+        /* Nazwa funkcji: wypiszUcznia
+         * Parametry wejściowe: uczen - uczeń do wypisania
+         * Informacje: Wypisuje informacje o uczniu, w tym jego imię, oceny oraz sumę ocen.
+         * Autor: Bartosz Semczuk
+         */
         public void wypiszUcznia(Uczen uczen)
         {
             Console.Write("Uczeń nr " + uczen.id + ": " + uczen.imie + ", oceny: [");
@@ -85,6 +127,11 @@ namespace EgzaminProbny4ConsoleApp
             }
             Console.Write("], suma ocen = " + uczen.suma + ')' + '\n');
         }
+        /* Nazwa funkcji: wpiszUcznia
+         * Parametry wejściowe: uczen - uczeń do wprowadzenia danych
+         * Informacje: Pobiera od użytkownika imię ucznia oraz jego oceny, a następnie przypisuje sumę ocen i sortuje je.
+         * Autor: Bartosz Semczuk
+         */
         public void wpiszUcznia(Uczen uczen)
         {
             Console.WriteLine("Podaj imię ucznia nr "+ uczen.id+" : ");
